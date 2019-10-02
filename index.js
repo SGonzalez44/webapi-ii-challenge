@@ -13,4 +13,4 @@ app.get('/', (req, res) => {
     res.send('App running');
 });
 
-app.listen(8080, postRoutes() => console.log('API running on port 4400'));
+app.listen(4400, () => console.log('API running on port 4400'));
