@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const server = express();
 
@@ -13,4 +14,8 @@ server.get('/', (req, res) => {
     res.send('Server running from Sals mind');
 });
 
-server.listen(4440, () => console.log('API running on port 4440'));
+const port = process.env.PORT || 5000;
+
+server.listen(port, () => {
+    console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+  });
