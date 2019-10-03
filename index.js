@@ -1,16 +1,16 @@
 const express = require('express');
-const app = express();
+const server = express();
 
 //Routes
 const postRoutes = require('./routes/posts');
 
 //Middleware
-app.use(express.json());
+server.use(express.json());
 
-app.use('/api/posts', postRoutes);
+server.use('/api/posts', postRoutes);
 
-app.get('/', (req, res) => {
-    res.send('App running');
+server.get('/', (req, res) => {
+    res.send('Server running from Sals mind');
 });
 
-app.listen(4400, () => console.log('API running on port 4400'));
+server.listen(4440, () => console.log('API running on port 4440'));

@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         })
         .catch(err => {
             res.status(500).json({
-                error: 'The posts information could not be retrieved.',
+                error: 'The posts data not be retrieved.',
             });
         });
 });
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         .then(data => {
             if (!data || data.length == 0) {
                 res.status(404).json({
-                    message: 'The post with the specified ID does not exist.',
+                    message: 'ID does not exist.',
                 });
             }
 
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
         })
         .catch(error => {
             res.status(500).json({
-                error: 'The post information could not be retrieved.',
+                error: 'Post data not retrieved.',
             });
         });
 });
@@ -45,14 +45,14 @@ router.get('/:id/comments', (req, res) => {
         .then(data => {
             if (!data || data.length == 0) {
                 res.status(400).json({
-                    message: 'The post with the specified ID does not exist.',
+                    message: 'ID does not exist.',
                 });
             }
             res.status(200).json(data);
         })
         .catch(err =>
             res.status(500).json({
-                error: 'The comments information could not be retrieved.',
+                error: 'Information could not be retrieved.',
             })
         );
 });
@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
 
     if (!post.title || !post.contents) {
         res.status(400).json({
-            errorMessage: 'Please provide title and contents for the post.',
+            errorMessage: 'Provide title & contents for post.',
         });
     }
 
@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
                 })
                 .catch(err => {
                     res.status(500).json({
-                        error: 'Returning new created post error',
+                        error: 'New created post error',
                     });
                 });
         })
@@ -87,7 +87,7 @@ router.post('/', (req, res) => {
             console.log('Insert Error: ', err);
             res.status(500).json({
                 error:
-                    'There was an error while saving the post to the database',
+                    'Error while saving post to database',
             });
         });
 });
@@ -101,13 +101,13 @@ router.post('/:id/comments', (req, res) => {
 
     if (!comment || !comment.text) {
         res.status(400).json({
-            errorMessage: 'Please provide text for the comment.',
+            errorMessage: 'Provide text for comment.',
         });
     }
 
     db.insertComment(comment)
         .then(data => {
-            console.log('Newly created Comment ID: ', data);
+            console.log('New Comment ID: ', data);
 
             db.findCommentById(data.id)
                 .then(data => {
@@ -116,7 +116,7 @@ router.post('/:id/comments', (req, res) => {
                 .catch(err => {
                     res.status(500).json({
                         error:
-                            'There was an error in sending back newly created comment, but it was created.',
+                            'Error in sending back newly created comment, but it was created.',
                     });
                 });
         })
